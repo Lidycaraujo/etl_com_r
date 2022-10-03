@@ -1,0 +1,16 @@
+#### criando o próprio data.frame
+
+#primeiro, vamos instalar um novo pacote: eeptools
+install.packages('eeptools')
+
+#depois, vamos chamar o pacote
+library(eeptools)
+
+# vetor com nome dos candidatos
+nomeCandidatos <- c("Lula", "Coisa", "Tebet", "Ciro", "Soraya", "D'Ávila", "PadreFake", "Leo", "Sofia", "Vera")
+
+# vetor com votos no 1º turno
+votos1T <- c(57258115, 51071277, 4915306, 3599201, 600953, 559680, 81127, 53518, 45615, 25623)
+
+# data.frame com base nos vetores
+listacandidatos <-data.frame(nome = nomeCandidatos, qtdevotos = votos1T)
