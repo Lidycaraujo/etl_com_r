@@ -1,0 +1,31 @@
+# o R como calculadora
+
+#chamando base nativa
+LakeHuron
+
+hist(LakeHuron)
+mean(LakeHuron)
+
+# soma as distribuições
+LakeHuron+100
+
+# eleva ao quadrado
+LakeHuron^2
+
+# multiplica
+LakeHuron * 3
+
+# arredonda o vetor para inteiros
+round(LakeHuron, 0)
+
+# arredonda para cima
+ceiling(LakeHuron)
+
+# arredonda para baixo
+floor(LakeHuron) 
+
+
+# uma aplicação prática?? vamos centralizar a nossa simulação poisson
+centrallakehuron <- LakeHuron - mean(LakeHuron)
+hist(LakeHuron)
+hist(LakeHuron)
