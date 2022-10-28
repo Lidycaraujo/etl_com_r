@@ -1,0 +1,49 @@
+install.packages("data.table")
+install.packages("dplyr")
+install.packages("tidyverse")
+
+library(data.table)
+library(dplyr)
+library(tidyverse)
+
+
+# carregar os dados de covid no mundo
+covid_mundo<-fread("https://covid.ourworldindata.org/data/owid-covid-data.csv")
+
+View(covid_mundo)
+
+# filtrar os países pelo continente - selecionando américa do sul
+america_sul <- covid_mundo %>% filter (continent %in% "South America")
+
+# criar uma nova base: agrupando pela coluna location; 
+# criando uma nova coluna (n_casos) com o número da linhas; 
+# selecionando apenas os dados de 3 colunas (location, total_deaths, n_casos)
+total_america_sul <- america_sul %>% group_by(location) %>% mutate (n_casos = row_number()) %>% select(location, total_deaths, n_casos)
+
+
+# igualando o número de casos
+# a): obter o número mínimo comum de casos - 
+# agrupando pela coluna location; filtrando pelo número máximo de casos
+
+resultado <- total_america_sul %>% group_by(location) %>% filter (n_casos == max(n_casos))
+View(resultado) 
+
+# b): para finalmente igualar 
+# filtra a coluna de casos com números menores ou iguais ao mínimo do df anterior
+total_america_sul <- total_america_sul %>% filter (n_casos<=min(resultado$n_casos))
+View(total_america_sul) 
+
+
+
+# mudar a direção (pivotar) do data frame de long para wide
+total_america_sul_wide <- total_america_sul %>% pivot_wider (names_from = n_casos, values_from = total_deaths) %>% remove_rownames %>% column_to_rownames(var= "location")
+View(total_america_sul_wide)
+
+# Mudando a direção de outro data frame - long para wide
+view(diamonds)
+diamonds2 <- diamonds [ ,-c(1,4:6,8:10)]
+view(diamonds2)
+diamonds2 <- diamonds2 %>% pivot_wider (names_from = color, values_from = price ) %>% remove_rownames %>% column_to_rownames(var = "cut")
+view(diamonds2)
+
+
