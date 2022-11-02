@@ -1,0 +1,26 @@
+# QUI-QUADRADO
+
+pacman::p_load(data.table, ggplot2)
+
+view(ChickWeight)
+help("ChickWeight")
+
+
+# tabela de contingencia #
+
+ChickWeight_table <- table(ChickWeight$Diet, ChickWeight$Time)
+ChickWeight_table
+
+# gráficos de dispersao pareados das variaveis #
+
+ggplot(ChickWeight) + aes(x = Time, fill = Diet) + geom_bar(position = "fill")
+
+
+# Teste qui quadrado #
+ChickWeight_test <- chisq.test(ChickWeight_table)
+ChickWeight_test
+ChickWeight_test$observed
+ChickWeight_test$expected
+
+# CORRPLOT DAS VARIÁVEIS #
+corrplot(ChickWeight_test$residuals, is.cor = FALSE)
