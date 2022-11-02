@@ -1,0 +1,22 @@
+# Correlação
+
+
+pacman::p_load(corrplot, dplyr, ggplot2)
+
+
+view(diamonds)
+view(iris)
+
+# BASE DE DADOS IRIS SEM AS ESPÉCIES #
+diamonds2 <- diamonds %>% select(x, y, z)
+
+# TABELA DE CORRELAÇÃO COM TODAS AS VARIÁVEIS #
+cor(diamonds2)
+
+# GRÁFICOS DE DISPERSÃO PAREADOS DAS VARIÁVEIS #
+pairs(diamonds2)
+
+# CORRPLOT DAS VARIÁVEIS #
+diamondsCor <- cor(diamonds2)
+corrplot(diamondsCor, method = "number", order = 'alphabet')
+corrplot(diamondsCor, order = 'alphabet') 
