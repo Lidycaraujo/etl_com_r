@@ -1,0 +1,29 @@
+pacman::p_load(data.table)
+
+
+# TESTE DE CORRELAÇÃO # entre variaveis numericas
+# H0: variáveis são independentes / não têm associação. p-valor (p-value) > 0.05
+# H1: variáveis são dependentes / há associação. p-valor (p-value) <= 0.05
+
+cor.test(diamonds$depth, diamonds$price)
+
+# o resultado do teste foi p-value = 0.0134 - que < 0.05
+# concluir pela hipótese alternativa (existência de associação negativa de -0.0106474 entre as variáveis)
+
+
+stg(diamonds)
+
+
+# TESTE DE FREQUÊNCIA - Qui-quadrado - testa a associação entre variáveis categórias
+
+view(diamonds)
+
+chisq.test(diamonds$cut, diamonds$clarity)
+
+# o resultado do teste foi p-value = 2.2e-16, que é 2,2 dividido por 10 elevado a 16, sendo, portanto, abaixo de 0,05, assim podemos rejeitar a hipótese nula e 
+# concluir pela hipótese alternativa (existência de associação entre as variáveis)
+
+# H0: variáveis são independentes / não há associação. p-valor (p-value) > 0.05
+# H1: variáveis são dependentes / há associação. p-valor (p-value) <= 0.05
+
+
