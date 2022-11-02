@@ -1,0 +1,33 @@
+library(dplyr)
+
+str(despNoronha20)
+table(despNoronha20$FUNCAO)
+
+# sumários
+count(despNoronha20,FUNCAO) 
+count(despNoronha20, NOME_FORNECEDOR)
+count(despNoronha20, PROGRAMA)
+
+
+# sumários com agrupamentos
+
+despNoronha20 %>% group_by(FUNCAO) %>% summarise( avg = mean(VALORLIQUIDADO))
+
+# ordenar casos
+# ascendente
+arrange(despNoronha20, VALORPAGO)
+
+# descendente
+arrange(despNoronha20, desc(VALORPAGO)) 
+
+# Transformação de Casos
+# seleção de casos
+despNoronha20 %>%  group_by(FUNCAO, ELEMENTODESPESA) %>% summarise(avg = mean(VALORPAGO))
+
+# criando novas colunas: saldo empenho
+despNoronha20 %>% mutate(SALDOEMPENHO = VALOREMPENHADO - VALORLIQUIDADO)
+
+View(despNoronha20)
+
+# renomeando novas colunas
+despNoronha20 %>% rename(GRUPODESPESA = NATUREZA)
