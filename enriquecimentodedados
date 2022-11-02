@@ -1,0 +1,15 @@
+install.packages("pacman")
+pacman::p_load(dplyr, tidyverse)
+library(dplyr)
+library(tidyverse)
+
+# 
+#importei data frames do meu pc - planos de mobilidade urbana (pmu) e populacao ibge 2010
+view(pmu)
+view(populacao2010)
+
+
+# ambos dataframes tem a coluna de código
+# objetivo é trazer a coluna de população para a pmu
+
+pmu <- left_join(pmu, populacao2010, by = c('Código' = 'Código'))
