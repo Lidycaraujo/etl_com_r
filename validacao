@@ -1,0 +1,33 @@
+# Validação
+
+install.packages("pacman")
+pacman::p_load(data.table, dplyr, tidyverse, validate)
+
+install.packages("data.table")
+install.packages("dplyr")
+install.packages("tidyverse")
+
+library (data.table)
+library (dplyr)
+library (tidyverse)
+
+install.packages("validate")
+library (validate)
+
+covid_mundo<-fread("https://covid.ourworldindata.org/data/owid-covid-data.csv") # carrega dados de covid19 no mundo
+
+View(covid_mundo)
+
+# filtra casos apenas no vetor
+
+asia <- covid_mundo %>% filter(continent %in% "Asia")  
+
+asia2 <- asia %>% select(location, new_cases, new_deaths)
+
+regras_asia <- validator(new_cases >= 0, new_deaths >= 0)
+
+validacao_asia <- confront(asia2, regras_asia)
+
+summary(validacao_asia)
+
+plot(validacao_asia)
