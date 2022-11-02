@@ -1,0 +1,36 @@
+# estatística descritiva
+
+diamonds
+
+## Tabela de frequência absoluta da variável Color da base Diamonds
+table(diamonds$color)
+
+## Tabela de frequência relativa da variável Color da base Diamonds
+prop.table(table(diamonds$color))
+
+## Média da variável Price da base diamonds
+mean(diamonds$price)
+
+## Mediana da variável Price da base diamonds
+median(diamonds$price)
+
+## Separatrizes da variável Price da base diamonds
+quantile(diamonds$price, probs=0.75)
+quantile(diamonds$price, probs=0.10)
+quantile(diamonds$price, probs=0.95)
+# boxplot - gráfico que resume as sepatrizes
+boxplot(diamonds$price) 
+
+## Desvio-padrão da variável price da base diamonds
+sd(diamonds$price)
+plot(diamonds$price)
+
+## Sumário descritivo básico das variáveis
+summary(diamonds)
+
+## Sumário descritivo completo das variáveis usando o pacote fBasics
+pacman::p_load(fBasics)
+basicStats(diamonds[ , c(1:4)])
+
+# histograma - gráfico que permite conhecer a curva dos dados
+hist(diamonds$price) 
