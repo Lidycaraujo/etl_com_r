@@ -1,0 +1,43 @@
+# Para que os resultados obtidos possam ser reproduzidas em qualquer computador, usar a função set.seed
+# a função addTaskCallback registra uma função R que deve ser chamada sempre que uma tarefa de nível superior for concluída.
+tarefaSemente <- addTaskCallback(function(...){set.seed(123);TRUE})
+tarefaSemente
+
+# Distribuição normal simulada. 
+# O número 50 indica o total de casos. 
+# Como foi utilizada a função set.seed, os resultados obtidos são os mesmos em qualquer pc.
+distNormalSimulacao <- rnorm(50)
+summary(distNormalSimulacao)
+
+# Distribuição binominal simulada. 
+# O número 100 indica a amostra. 
+# Em seguida tem o número de repetições do experimento (no exemplo, optou-se por simular uma variável binária 0 ou 1) 
+# e, por último, a probabilidade de sucesso de cada teste
+# rbinom para criar distribuição binominal, indicando casos, tamanho e probabilidade
+distBinominalSimulacao <-rbinom(50, 1, 0.7)
+distBinominalSimulacao
+
+
+# Repetições
+# metade dos dados com jovem e a outra parte com jovem adultos
+classeSimulacao <- c(rep("Jovem", length(distBinominalSimulacao)/2), rep("Jovem Adulto", length(distBinominalSimulacao)/2)) 
+summary(classeSimulacao)
+str(classeSimulacao)
+view (classeSimulacao)
+
+#repetindo a palavra jovem no primeiro terço da distribuição
+classeSimulacao2 <- c(rep("Jovem", length(distBinominalSimulacao)/3))
+summary(classeSimulacao2)
+str(classeSimulacao2)
+view (classeSimulacao2)
+
+
+#Sequências
+# vetor com índex dos dados, usando a função length para pegar o total de casos
+indexSimulacao <- seq(1, length(distNormalSimulacao)) 
+
+#índice de números pares, iniciando em 2, selecionando de 2 em 2.
+variavelIndexPar <- seq(2, length(distNormalSimulacao), 2) 
+
+#iniciando em 13 até a posição 36
+variavelIndexB2 <- seq(13, 36)
