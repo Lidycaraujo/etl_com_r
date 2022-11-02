@@ -25,7 +25,8 @@ regUsarrestsBoth <- step(
 summary(regSwissBoth)
 
 # VERIFICAÇÃO DOS PRESSUPOSTOS - testes para saber se a regressão funcionou 
-# normalidade dos resíduos - resíduo é a diferença entre o valor do modelo de regressão e o valor real dos dados. A diferença deve ser normal. p-Valor maior que 0.05 é normal.
+# normalidade dos resíduos (resíduo é a diferença entre o valor do modelo de regressão e o valor real dos dados). 
+# A diferença deve ser normal. p-Valor maior que 0.05 é normal.
 shapiro.test(residuals(regUsarrests))
 
  # normalidade dos resíduos em gráfico de equilíbrio. resíduos x ajuste
@@ -34,7 +35,7 @@ plot(regUsarrests, which=1, col=c("blue"))
 # Os pontos devem ficar em cima da reta. Q-Q Plot
 plot(regUsarrests, which=2, col=c("red")) 
 
-# Observações Influentes (outliers) - atenção: caso apareça pontos na área de 0,5 a 1 é preocupante
+# Observações Influentes (outliers) - atenção: pontos na área de 0,5 a 1 é preocupante
 plot(regUsarrests, which=5, col=c("blue"))  
 
 #= Correção seria retirar as observações influentes =#
@@ -42,10 +43,10 @@ plot(regUsarrests, which=5, col=c("blue"))
 vif(regUsarrests)
 barplot(vif(regUsarrests), main = "VIF Values", horiz = FALSE, col = "steelblue", ylim = c(0,5))
 
-#cria uma linha no grafico de barras da linha acima, delimitando o limite máximo da inflação. Tudo que passa de 5 é preocupante e passando de 10 é alarmante.
+# cria uma linha no grafico de barras da linha acima, delimitando o limite máximo da inflação. Tudo que passa de 5 é preocupante e passando de 10 é alarmante.
 abline(h = 5, lwd = 3, lty = 2) 
 
-#= Correção seria usar apenas uma das variáveis correlacionadas. Como: após fazer o teste de correlação e encontrar as variáveis correlacionadas, para escolher a variável que deve ficar aquela com t-value maior no teste da regressão (valor alto no t-value leva a valor baixo no p-valor) =#
+#= Correção seria usar apenas uma das variáveis correlacionadas =#
 # homocedasticidade (H0 = homocedasticidade)
 # teste de homocedasticidade busca p-value maior que 0.05, pois isso siginifica que há homocedasticidade (uniformidade)
 bptest(regUsarrests) 
