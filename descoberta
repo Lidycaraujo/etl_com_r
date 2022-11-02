@@ -1,0 +1,29 @@
+# Descoberta
+install.packages("funModeling")
+install.packages("tidyverse")
+
+library(funModeling)
+library(tidyverse)
+
+
+# conhecer os dados 
+glimpse(despNoronha20) 
+
+
+# conhecer a 1a linha do dataframe (cabeçalho)
+head(despNoronha20)
+head(diamonds)
+
+# estrutura dos dados (missing etc)
+status(despNoronha20) 
+
+# frequência das variáveis fator
+freq(despNoronha20) 
+freq(diamonds) # aqui não tem
+
+# exploração das variáveis numéricas
+plot_num(despNoronha20) 
+plot_num(diamonds) 
+
+# estatísticas das variáveis numéricas
+profiling_num(diamonds) 
